@@ -2,18 +2,24 @@ import { useState } from 'react'
 import { signUp } from '../../utilities/trainers-service'
 import { useNavigate, Link } from 'react-router-dom'
 import { HiOutlineMail, HiOutlineKey, HiOutlineHome } from 'react-icons/hi'
-import { AiOutlineUser } from 'react-icons/ai'
+import { AiOutlineUser, AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 const SignUp = ({ setTrainer }) => {
     const [newTrainer, setNewTrainer] = useState({
         email: '',
         password: '',
         trainerName: '',
-        trainerHandle: '',
+        // trainerHandle: '',
         region: ''
     })
 
+    const [passwordVisible, setPasswordVisible] = useState(false)
+
     const navigate = useNavigate()
+
+    const handleVisibility = () => {
+        setPasswordVisible(!passwordVisible)
+    }
 
     const handleChange = e => {
         setNewTrainer({
@@ -42,7 +48,7 @@ const SignUp = ({ setTrainer }) => {
 
                 <form onSubmit={handleSubmit}>
 
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1"><AiOutlineUser /></span>
                         <input
                             type="text"
@@ -55,7 +61,29 @@ const SignUp = ({ setTrainer }) => {
                         />
                     </div>
 
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
+                        <label className="input-group-text" htmlFor="inputGroupSelect01 region"><HiOutlineHome /></label>
+                        <select
+                            className="form-select"
+                            id="inputGroupSelect01 region"
+                            defaultValue="none"
+                            name="region"
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="none" disabled hidden>Your Home Region</option>
+                            <option value="kanto">Kanto</option>
+                            <option value="johto">Johto</option>
+                            <option value="hoenn">Hoenn</option>
+                            <option value="sinnoh">Sinnoh</option>
+                            <option value="unova">Unova</option>
+                            <option value="kalos">Kalos</option>
+                            <option value="kalos">Alola</option>
+                            <option value="galar">Galar</option>
+                        </select>
+                    </div>
+
+                    <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1"><HiOutlineMail /></span>
                         <input
                             type="email"
@@ -69,10 +97,10 @@ const SignUp = ({ setTrainer }) => {
                         />
                     </div>
 
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3 position-relative">
                         <span className="input-group-text" id="basic-addon1"><HiOutlineKey /></span>
                         <input
-                            type="password"
+                            type={(passwordVisible === false) ? "password" : "text"}
                             className="form-control"
                             placeholder="Password"
                             aria-label="Password"
@@ -81,24 +109,19 @@ const SignUp = ({ setTrainer }) => {
                             onChange={handleChange}
                             required
                         />
+
+                        <div className="position-absolute end-0 fs-4 mx-3">
+                            {
+                                (passwordVisible === false)
+                                    ?
+                                    <AiFillEye onClick={handleVisibility} className="eyes" />
+                                    :
+                                    <AiFillEyeInvisible onClick={handleVisibility} className="eyes" />
+                            }
+                        </div>
                     </div>
 
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" htmlForfor="inputGroupSelect01"><HiOutlineHome/></label>
-                        <select class="form-select" id="inputGroupSelect01">
-                            <option selected>Your Home Region</option>
-                            <option value="1">Kanto</option>
-                            <option value="2">Johto</option>
-                            <option value="3">Hoenn</option>
-                            <option value="3">Sinnoh</option>
-                            <option value="3">Unova</option>
-                            <option value="3">Kalos</option>
-                            <option value="3">Alola</option>
-                            <option value="3">Galar</option>
-                        </select>
-                    </div>
-
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <button className="btn btn-primary" type="submit">Submit</button>
 
                 </form>
 
