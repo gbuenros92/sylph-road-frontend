@@ -9,7 +9,6 @@ const SignUp = ({ setTrainer }) => {
         email: '',
         password: '',
         trainerName: '',
-        // trainerHandle: '',
         region: ''
     })
 

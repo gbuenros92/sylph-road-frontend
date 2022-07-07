@@ -38,7 +38,7 @@ export const getToken = () => {
 
 export const getTrainer = () => {
     const token = getToken()
-    return token ? JSON.parse(Window.atob(token.split('.')[1])).trainer : null
+    return token ? JSON.parse(atob(token.split('.')[1])).trainer : null
 }
 
 export const logOut = () => {
