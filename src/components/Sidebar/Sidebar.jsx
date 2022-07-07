@@ -28,7 +28,6 @@ const Sidebar = ({ trainer, setTrainer, logOut }) => {
                         trainer
                             ?
                             <>
-                                <p>Logged in as {trainer.trainerName}</p>
                                 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 
                                     <li className="nav-item">
@@ -39,6 +38,9 @@ const Sidebar = ({ trainer, setTrainer, logOut }) => {
                                         <Link className="nav-link" onClick={handleLogOut} to="/">Logout</Link>
                                     </li>
 
+                                    <li className="nav-item">
+                                        <p>Logged in as {trainer.trainerName}</p>
+                                    </li>
                                 </ul>
                             </>
                             :

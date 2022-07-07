@@ -1,7 +1,9 @@
-const Profile = () => {
+import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
+
+const Profile = ({ trainer }) => {
     return (
-        <div>
-            PROFILE PAGE
+        <div id="profile-container">
+            <ProfileHeader trainer={trainer} />
         </div>
     );
 }

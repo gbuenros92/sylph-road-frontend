@@ -17,3 +17,14 @@
 .eyes:hover {
     cursor: pointer;
 }
+
+#header-container {
+    border: 1px solid red
+}
+
+#profile-picture img {
+    width: 150px;
+    height: 150px;
+    border: solid black;
+    border-radius: 50%;
+}

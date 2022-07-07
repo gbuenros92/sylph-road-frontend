@@ -7,6 +7,7 @@ import SignUp from '../SignUp/SignUp'
 import LogIn from '../LogIn/LogIn'
 import Home from '../Home/Home'
 import Profile from '../Profile/Profile'
+import EditProfile from '../EditProfile/EditProfile'
 
 // Components
 import Sidebar from '../../components/Sidebar/Sidebar'
@@ -39,7 +40,8 @@ const App = () => {
             :
             <>
               <Route path="/home" element={<Home />} />
-              <Route path={`trainer/${trainer._id}`} element={<Profile trainer={trainer} />} />
+              <Route path="trainer/:id" element={<Profile trainer={trainer} />} />
+              <Route path="trainer/:id/edit" element={<EditProfile />} />
             </>
         }
       </Routes>
