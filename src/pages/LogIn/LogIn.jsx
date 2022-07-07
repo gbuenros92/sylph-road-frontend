@@ -82,9 +82,9 @@ const LogIn = ({ setTrainer }) => {
                         }
                     </div>
                 </div>
+                <div id="emailHelp" className="form-text">{message}</div>
 
                 <button className="btn btn-primary" type="submit">Log In</button>
-                <div id="emailHelp" className="form-text">{message}</div>
 
             </form>
         </div>

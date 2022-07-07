@@ -1,16 +1,20 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Sidebar = ({ trainer, setTrainer, logOut }) => {
+
+    const navigate = useNavigate()
+
     const handleLogOut = () => {
         setTrainer(null)
         logOut()
+        navigate('/')
     }
 
     return (
         <nav className="navbar navbar-light bg-light">
             <div className="container-fluid d-flex justify-content-between">
 
-                <Link className="navbar-brand col" to="/">
+                <Link className="navbar-brand col" to="/home">
                     <img src="logo-sm.png" alt="" width="35" height="35" />
                     Silph Road
                 </Link>
@@ -23,11 +27,20 @@ const Sidebar = ({ trainer, setTrainer, logOut }) => {
                     {
                         trainer
                             ?
-                            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                                <li className="nav-item">
-                                    <Link className="nav-link" onClick={handleLogOut} to="/">Logout</Link>
-                                </li>
-                            </ul>
+                            <>
+                                <p>Logged in as {trainer.trainerName}</p>
+                                <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                                    <li className="nav-item">
+                                        <Link className="nav-link" to={`trainer/${trainer._id}`}>Profile</Link>
+                                    </li>
+
+                                    <li className="nav-item">
+                                        <Link className="nav-link" onClick={handleLogOut} to="/">Logout</Link>
+                                    </li>
+
+                                </ul>
+                            </>
                             :
                             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                                 <li className="nav-item">

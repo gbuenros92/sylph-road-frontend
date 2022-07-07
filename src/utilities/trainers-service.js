@@ -17,6 +17,8 @@ export const login = async credentials => {
         const token = await axios.post(`${BASE_URL}/login`, credentials)
 
         localStorage.setItem('token', token.data)
+
+        return getTrainer()
     } catch (e) {
         console.log(e)
     }
