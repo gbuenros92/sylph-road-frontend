@@ -32,7 +32,7 @@ const SignUp = ({ setTrainer }) => {
         try {
             const trainer = await signUp(newTrainer)
             setTrainer(trainer)
-            if (trainer) navigate('/home')
+            if (trainer) navigate(`/trainer/${trainer._id}/edit`)
         } catch (e) {
             console.log(e)
         }

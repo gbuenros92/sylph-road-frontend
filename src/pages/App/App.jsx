@@ -7,10 +7,10 @@ import SignUp from '../SignUp/SignUp'
 import LogIn from '../LogIn/LogIn'
 import Home from '../Home/Home'
 import Profile from '../Profile/Profile'
-import EditProfile from '../EditProfile/EditProfile'
 
 // Components
 import Sidebar from '../../components/Sidebar/Sidebar'
+// import EditProfile from '../../components/EditProfile/EditProfile'
 
 // Services
 import * as trainersService from '../../utilities/trainers-service'
@@ -40,8 +40,8 @@ const App = () => {
             :
             <>
               <Route path="/home" element={<Home />} />
-              <Route path="trainer/:id" element={<Profile trainer={trainer} />} />
-              <Route path="trainer/:id/edit" element={<EditProfile />} />
+              <Route path="/trainer/:id" element={<Profile trainer={trainer} />} />
+              {/* <Route path="/trainer/:id/edit" element={<EditProfile />} /> */}
             </>
         }
       </Routes>

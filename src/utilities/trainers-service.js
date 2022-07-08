@@ -24,6 +24,22 @@ export const login = async credentials => {
     }
 }
 
+const setOptions = () => {
+    return {headers: {
+        'Authorization': `Bearer ${getToken()}`,
+        'Content-Type': 'application/json'
+    }}
+}
+
+export const updateTrainer = async newTrainerDetails => {
+    try {
+        const updatedTrainer = await axios.put(`${BASE_URL}/${newTrainerDetails._id}`, newTrainerDetails, setOptions())
+        return updatedTrainer
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 export const getToken = () => {
     const token = localStorage.getItem('token')
     if (!token) return null
