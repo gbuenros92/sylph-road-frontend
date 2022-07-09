@@ -31,7 +31,11 @@ const Sidebar = ({ trainer, setTrainer, logOut }) => {
                                 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 
                                     <li className="nav-item">
-                                        <Link className="nav-link" to={`trainer/${trainer._id}`}>Profile</Link>
+                                        <Link className="nav-link" to={`/trainer/${trainer._id}`}>Profile</Link>
+                                    </li>
+
+                                    <li className="nav-item">
+                                        <Link className="nav-link" to={'/pokemon'}>Pokedex</Link>
                                     </li>
 
                                     <li className="nav-item">

@@ -7,6 +7,7 @@ import SignUp from '../SignUp/SignUp'
 import LogIn from '../LogIn/LogIn'
 import Home from '../Home/Home'
 import Profile from '../Profile/Profile'
+import Pokedex from '../Pokedex/Pokedex'
 
 // Components
 import Sidebar from '../../components/Sidebar/Sidebar'
@@ -41,7 +42,7 @@ const App = () => {
             <>
               <Route path="/home" element={<Home />} />
               <Route path="/trainer/:id" element={<Profile trainer={trainer} />} />
-              {/* <Route path="/trainer/:id/edit" element={<EditProfile />} /> */}
+              <Route path="/pokemon" element={<Pokedex />} />
             </>
         }
       </Routes>
