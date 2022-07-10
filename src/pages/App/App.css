@@ -28,3 +28,7 @@
     border: solid black;
     border-radius: 50%;
 }
+
+.pokedex-item:hover {
+    cursor: pointer;
+}

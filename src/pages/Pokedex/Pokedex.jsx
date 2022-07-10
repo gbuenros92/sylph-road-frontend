@@ -1,64 +1,55 @@
-import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useState, useEffect } from 'react'
 
 // Bootstrap Components
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import ListGroup from 'react-bootstrap/ListGroup'
 
-import PokedexThumb from '../../components/PokedexThumb/PokedexThumb'
+import PokedexList from '../../components/PokedexList/PokedexList'
+import PokemonSearch from '../../components/PokemonSearch/PokemonSearch'
 
 const Pokedex = () => {
-    const baseURL = 'https://pokeapi.co/api/v2/pokemon'
     const [pokemon, setPokemon] = useState([])
-    const [next, setNext] = useState(`${baseURL}?limit=20`)
+    const [currentPage, setCurrentPage] = useState('https://pokeapi.co/api/v2/pokemon?limit=25')
+    const [nextPage, setNextPage] = useState('')
 
     useEffect(() => {
-        (async () => {
+        axios.get(currentPage).then(res => {
+            const data = res.data
 
-            try {
-                const res = await axios.get(next)
-                const data = res.data
+            setNextPage(data.next)
 
-                setNext(data.next)
+            data.results.map(pkmn => {
+                axios.get(pkmn.url).then(res => {
+                    setPokemon(current => [...current, res.data])
+                })
+            })
+        })
+    }, [currentPage])
 
-                const setPokemonData = result => {
-                    result.forEach(async pokemon => {
-                        try {
-                            const res = await axios.get(`${baseURL}/${pokemon.name}`)
-                            const data = res.data
-
-                            setPokemon(currentPokemon => [...currentPokemon, data])
-                        } catch (err) {
-                            console.log(err)
-                        }
-                    })
-                }
-                setPokemonData(data.results)
-
-            } catch (err) {
-                console.log(err)
-            }
-
-        })()
-    }, [])
+    const goToNext = () => {
+        setCurrentPage(nextPage)
+    }
 
     return (
-        <Container>
-            <Row xs={1} md={4} className="g-4">
+        <Container className="d-flex flex-column align-items-center">
+            <PokemonSearch />
+
+            <ListGroup>
                 {
-                    pokemon.map( (pokemon, index) =>
-                        <PokedexThumb 
-                            key={index}
+                    pokemon.map(pokemon =>
+                        <PokedexList
                             id={pokemon.id}
                             name={pokemon.name}
                             image={pokemon.sprites.other.dream_world.front_default}
-                            type1={pokemon.types[0].type.name}
-                            type2={(pokemon.types[1]) ? pokemon.types[1].type.name : null}
+                            type={pokemon.types[0].type.name}
                         />
                     )
                 }
-            </Row>
+            </ListGroup>
+
+            <Button variant="primary" size="lg" onClick={goToNext}>Load More</Button>
         </Container>
     );
 }
