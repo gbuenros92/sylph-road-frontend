@@ -10,7 +10,7 @@ import Profile from '../Profile/Profile'
 import Pokedex from '../Pokedex/Pokedex'
 
 // Components
-import Sidebar from '../../components/Sidebar/Sidebar'
+import Nav from '../../components/Nav/Nav'
 // import EditProfile from '../../components/EditProfile/EditProfile'
 
 // Services
@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Sidebar trainer={trainer} setTrainer={setTrainer} logOut={trainersService.logOut}/>
+      <Nav trainer={trainer} setTrainer={setTrainer} logOut={trainersService.logOut}/>
 
       <Routes>
         {

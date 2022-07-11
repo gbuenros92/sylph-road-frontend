@@ -95,7 +95,7 @@ const PokedexList = ({ id, name, image, type }) => {
     return (
         <ListGroup.Item 
             className="m-2 d-flex align-items-center border-end-0 pokedex-item" 
-            style={{ backgroundImage: `linear-gradient(to right, ${bgColor}, white` }}
+            style={{ backgroundImage: `linear-gradient(to right, white, ${bgColor}` }}
         >
             {
                 (id < 10) && <h6>#00{id}</h6>
