@@ -2,10 +2,14 @@ import { useState, useEffect } from 'react'
 
 import ListGroup from 'react-bootstrap/ListGroup'
 import Image from 'react-bootstrap/Image'
+import Button from 'react-bootstrap/Button'
+import Modal from 'react-bootstrap/Modal'
 
-const PokedexList = ({ id, name, image, type }) => {
+const PokedexList = ({ pokemon }) => {
 
     const [bgColor, setBgColor] = useState('')
+    const [bio, setBio] = useState('')
+    const [show, setShow] = useState(false)
 
     const typeColors = [
         {
@@ -83,32 +87,87 @@ const PokedexList = ({ id, name, image, type }) => {
     ]
 
     const getBgColor = pkmnType => {
-        for(let i = 0; i < typeColors.length; i++) {
+        for (let i = 0; i < typeColors.length; i++) {
             (typeColors[i].type === pkmnType) && setBgColor(typeColors[i].color)
         }
     }
 
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
+
+    const getBio = async pkmn => {
+        try {
+            const res = await fetch(pkmn.species.url)
+            const data = await res.json()
+
+            setBio(data.flavor_text_entries[0].flavor_text)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     useEffect(() => {
-        getBgColor(type)
+        getBgColor(pokemon.types[0].type.name)
+        getBio(pokemon)
     }, [])
 
     return (
-        <ListGroup.Item 
-            className="m-2 d-flex align-items-center border-end-0 pokedex-item" 
-            style={{ backgroundImage: `linear-gradient(to right, white, ${bgColor}` }}
-        >
-            {
-                (id < 10) && <h6>#00{id}</h6>
-            }
-            {
-                (id >= 10 && id < 100) && <h6>#0{id}</h6>
-            }
-            {
-                (id > 100) && <h6>{id}</h6>
-            }
-            <Image src={image} alt={name} height="55" className="mx-3"/>
-            <h4>{name[0].toUpperCase()+name.substring(1)}</h4>
-        </ListGroup.Item>
+        <>
+            <ListGroup.Item
+                className="m-2 d-flex align-items-center border-end-0 pokedex-item"
+                style={{ backgroundImage: `linear-gradient(to right, white, ${bgColor}` }}
+                onClick={handleShow}
+            >
+                {
+                    (pokemon.id < 10) && <h6>#00{pokemon.id}</h6>
+                }
+                {
+                    (pokemon.id >= 10 && pokemon.id < 100) && <h6>#0{pokemon.id}</h6>
+                }
+                {
+                    (pokemon.id > 100) && <h6>{pokemon.id}</h6>
+                }
+                <Image src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} height="55" className="mx-3" />
+                <h4>{pokemon.name[0].toUpperCase() + pokemon.name.substring(1)}</h4>
+            </ListGroup.Item>
+
+            <Modal show={show} onHide={handleClose}>
+
+                <Modal.Header closeButton>
+                    <Modal.Title>{pokemon.name[0].toUpperCase()+pokemon.name.substring(1)}</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                    <div className="dex-entry-container">
+                        <div className="dex-image" style={{backgroundImage: `linear-gradient(to bottom right, white, ${bgColor})`}}>
+                            <Image src={pokemon.sprites.other.dream_world.front_default} height="150" />
+                        </div>
+                        <div className="dex-bio">
+                            <h6>Type: </h6>
+                            <span>
+                                <small>{pokemon.types[0].type.name[0].toUpperCase() + pokemon.types[0].type.name.substring(1)}</small>
+                                {
+                                    (pokemon.types[1])
+                                    &&
+                                    <small> / {pokemon.types[1].type.name[0].toUpperCase() + pokemon.types[1].type.name.substring(1)}</small>
+                                }
+                            </span>
+                            <p>{bio}</p>
+                        </div>
+                        <div className="evolutions">
+                            <h6>Evolutions</h6>
+                        </div>
+                    </div>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <Button variant="success" onClick={handleClose}>
+                        Add to Party
+                    </Button>
+                </Modal.Footer>
+
+            </Modal>
+        </>
     );
 }
 

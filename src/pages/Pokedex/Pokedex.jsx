@@ -14,18 +14,47 @@ const Pokedex = () => {
     const [currentPage, setCurrentPage] = useState('https://pokeapi.co/api/v2/pokemon?limit=25')
     const [nextPage, setNextPage] = useState('')
 
+    // useEffect(() => {
+    //     axios.get(currentPage).then(res => {
+    //         const data = res.data
+
+    //         setNextPage(data.next)
+
+    //         data.results.map(pkmn => {
+    //             axios.get(pkmn.url).then(res => {
+    //                 setPokemon(current => [...current, res.data])
+    //             })
+    //         })
+    //     })
+    // }, [currentPage])
+
     useEffect(() => {
-        axios.get(currentPage).then(res => {
-            const data = res.data
+        (async () => {
 
-            setNextPage(data.next)
+            try {
+                const res = await fetch(currentPage)
+                const data = await res.json()
+                
+                setNextPage(data.next)
 
-            data.results.map(pkmn => {
-                axios.get(pkmn.url).then(res => {
-                    setPokemon(current => [...current, res.data])
+                const results = data.results
+
+                results.forEach(async pkmnData => {
+                    try {
+                        const res = await fetch(pkmnData.url)
+                        const data = await res.json()
+                        
+
+                        setPokemon(current => [...current, data])
+                    } catch (err) {
+                        console.log(err)
+                    }
                 })
-            })
-        })
+            } catch (err) {
+                console.log(err)
+            }
+
+        })()
     }, [currentPage])
 
     const goToNext = () => {
@@ -36,18 +65,13 @@ const Pokedex = () => {
         <Container className="d-flex flex-column align-items-center">
             <PokemonSearch />
 
-            <ListGroup>
-                {
-                    pokemon.map(pokemon =>
-                        <PokedexList
-                            id={pokemon.id}
-                            name={pokemon.name}
-                            image={pokemon.sprites.other.dream_world.front_default}
-                            type={pokemon.types[0].type.name}
-                        />
-                    )
-                }
-            </ListGroup>
+                <ListGroup>
+                    {
+                        pokemon.map(pokemon =>
+                            <PokedexList pokemon={pokemon}/>
+                        )
+                    }
+                </ListGroup>
 
             <Button variant="primary" size="lg" onClick={goToNext}>Load More</Button>
         </Container>

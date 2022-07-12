@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { TiThMenu } from 'react-icons/ti'
 import { IoMdTrendingUp } from 'react-icons/io'
-import { IoClose, IoSettingsOutline, IoNotificationsSharp } from 'react-icons/io5'
+import { IoClose, IoSettingsOutline, IoNotificationsOutline } from 'react-icons/io5'
 import { VscAccount } from 'react-icons/vsc'
 import { MdCatchingPokemon } from 'react-icons/md'
 import { BsChatDots } from 'react-icons/bs'
@@ -105,22 +105,22 @@ const Nav = ({ trainer, setTrainer, logOut }) => {
                                 <li className="nav-text">
                                     <Link to="/pokemon">
                                         <MdCatchingPokemon/>
+                                        <span className="nav-text-span">Pok&eacute;dex</span>
                                     </Link>
-                                    <span className="nav-text-span">Pok&eacute;dex</span>
                                 </li>
 
                                 <li className="nav-text">
                                     <Link to="#">
                                         <BsChatDots/>
+                                        <span className="nav-text-span">Messages</span>
                                     </Link>
-                                    <span className="nav-text-span">Messages</span>
                                 </li>
 
                                 <li className="nav-text">
                                     <Link to="#">
-                                        <IoNotificationsSharp/>
+                                        <IoNotificationsOutline/>
+                                        <span className="nav-text-span">Notifications</span>
                                     </Link>
-                                    <span className="nav-text-span">Notifications</span>
                                 </li>
 
                                 <li className="nav-text">
@@ -133,15 +133,15 @@ const Nav = ({ trainer, setTrainer, logOut }) => {
                                 <li className="nav-text">
                                     <Link to="#">
                                         <IoSettingsOutline/>
+                                        <span className="nav-text-span">Account</span>
                                     </Link>
-                                    <span className="nav-text-span">Account</span>
                                 </li>
 
                                 <li className="nav-text">
                                     <Link onClick={handleLogOut} to="/">
                                         <AiOutlineLogout/>
+                                        <span className="nav-text-span">Log Out</span>
                                     </Link>
-                                    <span className="nav-text-span">Log Out</span>
                                 </li>
                             </>
                             :
@@ -149,15 +149,15 @@ const Nav = ({ trainer, setTrainer, logOut }) => {
                               <li className="nav-text">
                                     <Link to="/login">
                                         <AiOutlineLogin/>
+                                        <span className="nav-text-span">Log In</span>
                                     </Link>
-                                    <span className="nav-text-span">Log In</span>
                                 </li>
 
                                 <li className="nav-text">
                                     <Link to="/">
                                         <AiOutlineUserAdd/>
+                                        <span className="nav-text-span">Sign Up</span>
                                     </Link>
-                                    <span className="nav-text-span">Sign Up</span>
                                 </li>  
                             </>
                     }
