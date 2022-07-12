@@ -10,6 +10,7 @@
     margin-left: 2rem;
     font-size: 2rem;
     background: none;
+    transform: translate(-30%, -25%)
 }
 
 .nav-menu {
@@ -69,4 +70,8 @@
 
 .nav-text-span  {
     margin-left: 16px;
+}
+
+.navbar-brand {
+    transform: translate(300%, -12%)
 }

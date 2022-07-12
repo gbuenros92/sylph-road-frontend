@@ -8,6 +8,7 @@ import LogIn from '../LogIn/LogIn'
 import Home from '../Home/Home'
 import Profile from '../Profile/Profile'
 import Pokedex from '../Pokedex/Pokedex'
+import PokedexEntry from '../PokedexEntry/PokedexEntry'
 
 // Components
 import Nav from '../../components/Nav/Nav'
@@ -43,6 +44,7 @@ const App = () => {
               <Route path="/home" element={<Home />} />
               <Route path="/trainer/:id" element={<Profile trainer={trainer} />} />
               <Route path="/pokemon" element={<Pokedex />} />
+              <Route path="/pokemon/:name" element={<PokedexEntry />} />
             </>
         }
       </Routes>

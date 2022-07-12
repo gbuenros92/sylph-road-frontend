@@ -60,7 +60,6 @@ const ProfileHeader = ({ trainer }) => {
             </div>
 
             <Button
-                // className="btn btn-outline-primary btn-sm"
                 variant="outline-primary"
                 onClick={handleShow}
             // onClick={() => navigate(`/trainer/${trainer._id}/edit`, { state: trainer })}

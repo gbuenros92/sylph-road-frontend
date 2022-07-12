@@ -26,59 +26,14 @@ const Nav = ({ trainer, setTrainer, logOut }) => {
     }
 
     return (
-        // <nav className="navbar navbar-light bg-light">
-        //     <div className="container-fluid d-flex justify-content-between">
-
-        //         <Link className="navbar-brand col" to="/home">
-        //             <img src="logo-sm.png" alt="" width="35" height="35" />
-        //             Silph Road
-        //         </Link>
-
-        //         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        //             <span className="navbar-toggler-icon"></span>
-        //         </button>
-
-        //         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        //             {
-        //                 trainer
-        //                     ?
-        //                     <>
-        //                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-
-        //                             <li className="nav-item">
-        //                                 <Link className="nav-link" to={`/trainer/${trainer._id}`}>Profile</Link>
-        //                             </li>
-
-        //                             <li className="nav-item">
-        //                                 <Link className="nav-link" to={'/pokemon'}>Pokedex</Link>
-        //                             </li>
-
-        //                             <li className="nav-item">
-        //                                 <Link className="nav-link" onClick={handleLogOut} to="/">Logout</Link>
-        //                             </li>
-
-        //                             <li className="nav-item">
-        //                                 <p>Logged in as {trainer.trainerName}</p>
-        //                             </li>
-        //                         </ul>
-        //                     </>
-        //                     :
-        //                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-        //                         <li className="nav-item">
-        //                             <Link className="nav-link" to="/signup">Sign Up</Link>
-        //                         </li>
-        //                         <li className="nav-item">
-        //                             <Link className="nav-link" to="/login">Login</Link>
-        //                         </li>
-        //                     </ul>
-        //             }
-        //         </div>
-        //     </div>
-        // </nav>
         <>
-            <div className="navbar">
+            <div className="navbar d-flex flex-row">
                 <Link to="#" className="menu-bars">
-                    <TiThMenu onClick={showSideBar}/>
+                    <TiThMenu onClick={showSideBar} />
+                </Link>
+                <Link className="navbar-brand" to="/home">
+                    <img src="new-logo.png" />
+                    The Silph Road
                 </Link>
             </div>
 
@@ -97,73 +52,72 @@ const Nav = ({ trainer, setTrainer, logOut }) => {
                             <>
                                 <li className="nav-text">
                                     <Link to={`/trainer/${trainer._id}`}>
-                                        <VscAccount/> 
+                                        <VscAccount />
                                         <span className="nav-text-span">Profile</span>
                                     </Link>
                                 </li>
 
                                 <li className="nav-text">
                                     <Link to="/pokemon">
-                                        <MdCatchingPokemon/>
+                                        <MdCatchingPokemon />
                                         <span className="nav-text-span">Pok&eacute;dex</span>
                                     </Link>
                                 </li>
 
                                 <li className="nav-text">
                                     <Link to="#">
-                                        <BsChatDots/>
+                                        <BsChatDots />
                                         <span className="nav-text-span">Messages</span>
                                     </Link>
                                 </li>
 
                                 <li className="nav-text">
                                     <Link to="#">
-                                        <IoNotificationsOutline/>
+                                        <IoNotificationsOutline />
                                         <span className="nav-text-span">Notifications</span>
                                     </Link>
                                 </li>
 
                                 <li className="nav-text">
                                     <Link to="#">
-                                        <IoMdTrendingUp/>
+                                        <IoMdTrendingUp />
                                         <span className="nav-text-span">Trending</span>
                                     </Link>
                                 </li>
 
                                 <li className="nav-text">
                                     <Link to="#">
-                                        <IoSettingsOutline/>
+                                        <IoSettingsOutline />
                                         <span className="nav-text-span">Account</span>
                                     </Link>
                                 </li>
 
                                 <li className="nav-text">
                                     <Link onClick={handleLogOut} to="/">
-                                        <AiOutlineLogout/>
+                                        <AiOutlineLogout />
                                         <span className="nav-text-span">Log Out</span>
                                     </Link>
                                 </li>
                             </>
                             :
                             <>
-                              <li className="nav-text">
+                                <li className="nav-text">
                                     <Link to="/login">
-                                        <AiOutlineLogin/>
+                                        <AiOutlineLogin />
                                         <span className="nav-text-span">Log In</span>
                                     </Link>
                                 </li>
 
                                 <li className="nav-text">
                                     <Link to="/">
-                                        <AiOutlineUserAdd/>
+                                        <AiOutlineUserAdd />
                                         <span className="nav-text-span">Sign Up</span>
                                     </Link>
-                                </li>  
+                                </li>
                             </>
                     }
                 </ul>
             </nav>
-
         </>
     );
 }

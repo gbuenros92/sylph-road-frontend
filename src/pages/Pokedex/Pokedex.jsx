@@ -1,5 +1,5 @@
-import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 // Bootstrap Components
 import Button from 'react-bootstrap/Button'
@@ -11,22 +11,10 @@ import PokemonSearch from '../../components/PokemonSearch/PokemonSearch'
 
 const Pokedex = () => {
     const [pokemon, setPokemon] = useState([])
-    const [currentPage, setCurrentPage] = useState('https://pokeapi.co/api/v2/pokemon?limit=25')
+    const [currentPage, setCurrentPage] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
     const [nextPage, setNextPage] = useState('')
 
-    // useEffect(() => {
-    //     axios.get(currentPage).then(res => {
-    //         const data = res.data
-
-    //         setNextPage(data.next)
-
-    //         data.results.map(pkmn => {
-    //             axios.get(pkmn.url).then(res => {
-    //                 setPokemon(current => [...current, res.data])
-    //             })
-    //         })
-    //     })
-    // }, [currentPage])
+    const navigate = useNavigate()
 
     useEffect(() => {
         (async () => {
@@ -68,7 +56,7 @@ const Pokedex = () => {
                 <ListGroup>
                     {
                         pokemon.map(pokemon =>
-                            <PokedexList pokemon={pokemon}/>
+                            <PokedexList key={pokemon.name} pokemon={pokemon}/>
                         )
                     }
                 </ListGroup>
