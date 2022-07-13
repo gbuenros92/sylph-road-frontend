@@ -43,8 +43,8 @@ const LogIn = ({ setTrainer }) => {
         setPasswordVisible(!passwordVisible)
     }
     return (
-        <div id="form-container">
-            <form onSubmit={handleSubmit}>
+        <div id="form-container" className="container d-flex justify-content-center w-25">
+            <form onSubmit={handleSubmit} className="m-5">
 
                 <div className="input-group mb-3">
                     <span className="input-group-text" id="basic-addon1"><HiOutlineMail /></span>

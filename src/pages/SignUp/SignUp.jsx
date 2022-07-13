@@ -32,7 +32,7 @@ const SignUp = ({ setTrainer }) => {
         try {
             const trainer = await signUp(newTrainer)
             setTrainer(trainer)
-            if (trainer) navigate(`/trainer/${trainer._id}/edit`)
+            if (trainer) navigate(`/home`)
         } catch (e) {
             console.log(e)
         }
@@ -41,90 +41,98 @@ const SignUp = ({ setTrainer }) => {
     return (
         <div id="sign-up-parent">
 
-            <div id="form-container">
+            {/* <h2>Register Here</h2> */}
 
-                <h2>Register Here</h2>
+            <div id="form-container" className="container d-flex">
 
-                <form onSubmit={handleSubmit}>
+                <div className="img-container my-3 border">
+                    <img src="summer-1.jpg" height="400" />
+                </div>
 
-                    <div className="input-group mb-3">
-                        <span className="input-group-text" id="basic-addon1"><AiOutlineUser /></span>
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="What's Your Name?"
-                            aria-label="Trainer Name"
-                            name="trainerName"
-                            value={newTrainer.trainerName}
-                            onChange={handleChange}
-                        />
-                    </div>
+                <div className="form container d-flex flex-column justify-content-center align-items-center">
 
-                    <div className="input-group mb-3">
-                        <label className="input-group-text" htmlFor="inputGroupSelect01 region"><HiOutlineHome /></label>
-                        <select
-                            className="form-select"
-                            id="inputGroupSelect01 region"
-                            defaultValue="none"
-                            name="region"
-                            onChange={handleChange}
-                            required
-                        >
-                            <option value="none" disabled hidden>Your Home Region</option>
-                            <option value="kanto">Kanto</option>
-                            <option value="johto">Johto</option>
-                            <option value="hoenn">Hoenn</option>
-                            <option value="sinnoh">Sinnoh</option>
-                            <option value="unova">Unova</option>
-                            <option value="kalos">Kalos</option>
-                            <option value="kalos">Alola</option>
-                            <option value="galar">Galar</option>
-                        </select>
-                    </div>
+                    <form onSubmit={handleSubmit}>
 
-                    <div className="input-group mb-3">
-                        <span className="input-group-text" id="basic-addon1"><HiOutlineMail /></span>
-                        <input
-                            type="email"
-                            className="form-control"
-                            placeholder="Email"
-                            aria-label="Email"
-                            name="email"
-                            value={newTrainer.email}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    <div className="input-group mb-3 position-relative">
-                        <span className="input-group-text" id="basic-addon1"><HiOutlineKey /></span>
-                        <input
-                            type={(passwordVisible === false) ? "password" : "text"}
-                            className="form-control"
-                            placeholder="Password"
-                            aria-label="Password"
-                            name="password"
-                            value={newTrainer.password}
-                            onChange={handleChange}
-                            required
-                        />
-
-                        <div className="position-absolute end-0 fs-4 mx-3">
-                            {
-                                (passwordVisible === false)
-                                    ?
-                                    <AiFillEye onClick={handleVisibility} className="eyes" />
-                                    :
-                                    <AiFillEyeInvisible onClick={handleVisibility} className="eyes" />
-                            }
+                        <div className="input-group mb-3">
+                            <span className="input-group-text" id="basic-addon1"><AiOutlineUser /></span>
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="What's Your Name?"
+                                aria-label="Trainer Name"
+                                name="trainerName"
+                                value={newTrainer.trainerName}
+                                onChange={handleChange}
+                            />
                         </div>
-                    </div>
 
-                    <button className="btn btn-primary" type="submit">Submit</button>
+                        <div className="input-group mb-3">
+                            <label className="input-group-text" htmlFor="inputGroupSelect01 region"><HiOutlineHome /></label>
+                            <select
+                                className="form-select"
+                                id="inputGroupSelect01 region"
+                                defaultValue="none"
+                                name="region"
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value="none" disabled hidden>Your Home Region</option>
+                                <option value="kanto">Kanto</option>
+                                <option value="johto">Johto</option>
+                                <option value="hoenn">Hoenn</option>
+                                <option value="sinnoh">Sinnoh</option>
+                                <option value="unova">Unova</option>
+                                <option value="kalos">Kalos</option>
+                                <option value="kalos">Alola</option>
+                                <option value="galar">Galar</option>
+                            </select>
+                        </div>
 
-                </form>
+                        <div className="input-group mb-3">
+                            <span className="input-group-text" id="basic-addon1"><HiOutlineMail /></span>
+                            <input
+                                type="email"
+                                className="form-control"
+                                placeholder="Email"
+                                aria-label="Email"
+                                name="email"
+                                value={newTrainer.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                <small>Already have an account? <Link to="/login">Log in here!</Link></small>
+                        <div className="input-group mb-3 position-relative">
+                            <span className="input-group-text" id="basic-addon1"><HiOutlineKey /></span>
+                            <input
+                                type={(passwordVisible === false) ? "password" : "text"}
+                                className="form-control"
+                                placeholder="Password"
+                                aria-label="Password"
+                                name="password"
+                                value={newTrainer.password}
+                                onChange={handleChange}
+                                required
+                            />
+
+                            <div className="position-absolute end-0 fs-4 mx-3">
+                                {
+                                    (passwordVisible === false)
+                                        ?
+                                        <AiFillEye onClick={handleVisibility} className="eyes" />
+                                        :
+                                        <AiFillEyeInvisible onClick={handleVisibility} className="eyes" />
+                                }
+                            </div>
+                        </div>
+
+                        <button className="btn btn-primary signup-btn" type="submit">Create Account</button>
+
+                    </form>
+                    &nbsp;
+                    <small>Already have an account? <Link to="/login">Log in here!</Link></small>
+                </div>
+
 
             </div>
 

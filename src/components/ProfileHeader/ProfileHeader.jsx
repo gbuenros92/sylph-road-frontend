@@ -42,30 +42,40 @@ const ProfileHeader = ({ trainer }) => {
     // const navigate = useNavigate()
 
     return (
-        <div id="header-container" className="h-auto d-inline-flex align-items-center">
+        <div id="header-container" className="h-auto d-inline-flex align-items-center m-3 p-2">
 
             <div id="profile-picture">
-                <img src={trainer.picture} alt="" />
+                <img src={trainer.picture} alt="" className="m-2" />
             </div>
 
             <div id="name-handle">
-                <h4>{trainer.trainerName}</h4>
-                <span><BsPinMapFill/><h6>{trainer.region[0].toUpperCase()+trainer.region.substring(1)}</h6></span>
-                <small>@{trainer.trainerHandle}</small>
+                <h3 className="m-0">{trainer.trainerName}</h3>
+                <small className="handle">@{trainer.trainerHandle}</small>
+                <div className="d-flex flex-row mt-3">
+                    <BsPinMapFill style={{ color: 'red' }} />
+                    &nbsp;
+                    <h6>{trainer.region[0].toUpperCase() + trainer.region.substring(1)}</h6>
+                </div>
+
+                <div id="follow" className="d-flex">
+                    <span className="follow"><small className="number">1</small>&nbsp;<small className="m-0">Following</small></span>
+                    &nbsp;
+                    <span className="follow"><small className="number">19.3M</small>&nbsp;<small className="m-0">Followers</small></span>
+                </div>
             </div>
 
-            <div id="follow">
-                <h6>Following</h6>
-                <h6>Followers</h6>
+            <div className="d-flex flex-column">
+                <Button
+                    variant="outline-primary"
+                    size="sm"
+                    className="mx-4 edit-button"
+                    onClick={handleShow}
+                // onClick={() => navigate(`/trainer/${trainer._id}/edit`, { state: trainer })}
+                >
+                    Edit Profile
+                </Button>
             </div>
 
-            <Button
-                variant="outline-primary"
-                onClick={handleShow}
-            // onClick={() => navigate(`/trainer/${trainer._id}/edit`, { state: trainer })}
-            >
-                Edit Profile
-            </Button>
 
             <Modal
                 show={show}
@@ -81,21 +91,22 @@ const ProfileHeader = ({ trainer }) => {
                     <Form onSubmit={handleSubmit}>
                         <InputGroup className="mb-3">
                             <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-                            <FormControl 
+                            <FormControl
                                 name="trainerHandle"
                                 onChange={handleChange}
-                                value={trainerDetails.trainerHandle} 
-                                placeholder={trainer.trainerHandle}/>
+                                value={trainerDetails.trainerHandle}
+                                placeholder={trainer.trainerHandle}
+                            />
                         </InputGroup>
                         <Button variant="primary" type="submit">Save Changes</Button>
                     </Form>
-                    
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    
+
                 </Modal.Footer>
             </Modal>
 

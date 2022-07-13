@@ -33,7 +33,7 @@ const Nav = ({ trainer, setTrainer, logOut }) => {
                 </Link>
                 <Link className="navbar-brand" to="/home">
                     <img src="new-logo.png" />
-                    The Silph Road
+                    The Sylph Road
                 </Link>
             </div>
 

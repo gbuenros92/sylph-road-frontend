@@ -1,6 +1,6 @@
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+// import axios from 'axios'
+// import { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
@@ -14,37 +14,37 @@ import Col from 'react-bootstrap/Col'
 
 const PokedexEntry = () => {
     const navigate = useNavigate()
-    // const location = useLocation()
-    // const pokemon = location.state
-    const { name } = useParams()
+    const location = useLocation()
+    const pokemon = location.state
+    // const { name } = useParams()
 
-    const [pokemon, setPokemon] = useState([])
-    const [bio, setBio] = useState('')
+    // const [pokemon, setPokemon] = useState([])
+    // const [bio, setBio] = useState('')
 
-    const getBio = async pkmn => {
-        try {
-            const res = await axios.get(pkmn.species.url)
-            const data = res.data
+    // const getBio = async pkmn => {
+    //     try {
+    //         const res = await axios.get(pkmn.species.url)
+    //         const data = res.data
 
-            const text = data.flavor_text_entries.find(entries => entries.language.name === "en")
-            setBio(text.flavor_text)
-        } catch (err) {
-            console.log(err)
-        }
-    }
+    //         const text = data.flavor_text_entries.find(entries => entries.language.name === "en")
+    //         setBio(text.flavor_text)
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+    // useEffect(() => {
+    //     (async () => {
+    //         try {
+    //             const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
                 
-                setPokemon(res.data)
-            } catch (err) {
-                console.log(err)
-            }
-        })()
-        getBio(pokemon)
-    }, [name])
+    //             setPokemon(res.data)
+    //         } catch (err) {
+    //             console.log(err)
+    //         }
+    //     })()
+    //     getBio(pokemon)
+    // }, [name])
 
     return (
         <Container>
@@ -56,9 +56,9 @@ const PokedexEntry = () => {
 
                 <Card.Body className="d-flex flex-column">
 
-                    <Container>
-                        <Image src={pokemon.sprites.other.dream_world.front_default}/>
-                        <h6>{bio}</h6>
+                    <Container className="d-flex justify-content-center">
+                        <Image src={pokemon.sprites.other.home.front_default}/>
+                        {/* <h6>{bio}</h6> */}
                     </Container>
 
                     <Container>

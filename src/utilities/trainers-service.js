@@ -1,6 +1,8 @@
 import axios from 'axios'
 
+// const BASE_URL = "https://the-sylph-road.herokuapp.com/api/v1/trainers"
 const BASE_URL = "http://localhost:8080/api/v1/trainers"
+
 
 export const signUp = async newTrainer => {
     try {

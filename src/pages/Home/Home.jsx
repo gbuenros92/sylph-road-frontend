@@ -1,8 +1,14 @@
+import Feed from "../../components/Feed/Feed";
+import PostBox from "../../components/PostBox/PostBox";
+
+import Container from 'react-bootstrap/Container'
+
 const Home = () => {
     return (
-        <div>
-            THIS IS THE HOME PAGE
-        </div>
+        <Container className="d-flex flex-column align-items-center">
+            <PostBox />
+            <Feed />
+        </Container>
     );
 }
 

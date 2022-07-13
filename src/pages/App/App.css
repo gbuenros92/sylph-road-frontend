@@ -5,7 +5,9 @@
 }
 
 #form-container {
-    border: 1px solid red;
+    border: solid lightgray;
+    border-radius: 10px;
+    background-color: white;
     position: absolute;
     width: 40vw;
     height: auto;
@@ -19,16 +21,36 @@
 }
 
 #header-container {
-    border: 1px solid red
+    background: white;
+    border-radius: 10px;
 }
 
 #profile-picture img {
     width: 150px;
     height: 150px;
-    border: solid black;
+    border: 3px solid #007bff;
     border-radius: 50%;
+}
+
+.handle {
+    color: gray
 }
 
 .pokedex-item:hover {
     cursor: pointer;
+}
+.edit-button {
+    transform: translateY(-120%)
+}
+
+.follow {
+    display: flex
+}
+
+.number {
+    font-weight: bold   ;
+}
+
+.signup-btn {
+    transform: translateX(50%);
 }
